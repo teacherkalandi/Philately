@@ -19,14 +19,14 @@ const cards = [
     title: "Philately Report",
     description: "Access comprehensive annual reports and statistical data on philatelic activities.",
     icon: FileText,
-    color: "text-post-red",
+    color: "text-blue-600",
     link: "#"
   },
   {
     title: "Dhai Akhar",
     description: "National level letter writing competition to promote the art of letter writing.",
     icon: Mail,
-    color: "text-post-red",
+    color: "text-orange-600",
     link: "#"
   },
   {
@@ -40,21 +40,21 @@ const cards = [
     title: "Universal Letter Writing Competition",
     description: "International competition organized by UPU for young people worldwide.",
     icon: PenTool,
-    color: "text-post-red",
+    color: "text-purple-600",
     link: "#"
   },
   {
     title: "Philately Club Details",
     description: "Find information about local philately clubs and community gatherings.",
     icon: Users,
-    color: "text-post-red",
+    color: "text-emerald-600",
     link: "#"
   },
   {
     title: "Philately Deposit Account Details",
     description: "Manage your PDA for hassle-free collection of new stamps and special covers.",
     icon: CreditCard,
-    color: "text-post-red",
+    color: "text-indigo-600",
     link: "#"
   }
 ];
@@ -71,7 +71,7 @@ const sparshCards = [
     title: "SPARSH 2026-27",
     description: "Upcoming scholarship schedule and guidelines for the academic year 2026-27.",
     icon: Calendar,
-    color: "text-post-red",
+    color: "text-amber-600",
     link: "#"
   }
 ];
@@ -145,18 +145,18 @@ export default function App() {
                     className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
                   >
                     {[
-                      "Consolidation",
-                      "Contact Details of Schools",
-                      "Philately Forms",
-                      "Archive"
+                      { name: "Consolidation", link: "https://stampinventorydkl.vercel.app/" },
+                      { name: "Contact Details of Schools", link: "#" },
+                      { name: "Philately Forms", link: "#" },
+                      { name: "Archive", link: "#" }
                     ].map((item) => (
                       <a
-                        key={item}
-                        href="#"
+                        key={item.name}
+                        href={item.link}
                         className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
                         onClick={() => setIsDropdownOpen(false)}
                       >
-                        {item}
+                        {item.name}
                       </a>
                     ))}
                   </motion.div>
