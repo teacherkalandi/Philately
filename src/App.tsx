@@ -10,7 +10,8 @@ import {
   ChevronRight,
   Stamp,
   ArrowLeft,
-  Calendar
+  Calendar,
+  ChevronDown
 } from "lucide-react";
 
 const cards = [
@@ -77,6 +78,7 @@ const sparshCards = [
 
 export default function App() {
   const [activeView, setActiveView] = useState("main");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const currentCards = activeView === "main" ? cards : sparshCards;
 
@@ -123,8 +125,44 @@ export default function App() {
           >
             <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Home</a>
             <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Exhibitions</a>
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Archive</a>
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Contact</a>
+            
+            {/* Other Dropdown */}
+            <div className="relative">
+              <button 
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-1 hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1 uppercase"
+              >
+                Other
+                <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
+                  >
+                    {[
+                      "Consolidation",
+                      "Contact Details of Schools",
+                      "Philately Forms",
+                      "Archive"
+                    ].map((item) => (
+                      <a
+                        key={item}
+                        href="#"
+                        className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
             {/* India Post Logo */}
             <div className="bg-white p-1 md:p-1.5 rounded-sm ml-1 md:ml-2">
@@ -290,11 +328,13 @@ export default function App() {
           
           <div>
             <h4 className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-post-yellow mb-4 md:mb-6 font-black">Contact Us</h4>
-            <p className="text-xs md:text-sm opacity-80 leading-relaxed mb-3 md:mb-4">
-              Dak Bhawan, Sansad Marg,<br />
-              New Delhi - 110001
+            <p className="text-xs md:text-sm opacity-80 leading-relaxed mb-1">
+              Kalandi Charan Sahoo, OA,
             </p>
-            <p className="text-xs md:text-sm font-bold">Toll Free: 1800-266-6868</p>
+            <p className="text-xs md:text-sm opacity-80 leading-relaxed mb-3">
+              Dhenkanal Postal Division
+            </p>
+            <p className="text-xs md:text-sm font-bold">Contact no. 824857xxxx</p>
           </div>
         </div>
         
