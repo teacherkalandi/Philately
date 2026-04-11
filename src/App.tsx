@@ -184,25 +184,25 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white selection:bg-post-yellow selection:text-post-red">
       {/* Top Bar Accent */}
-      <div className="bg-post-yellow h-1 w-full" />
+      <div className="bg-post-red h-1 w-full" />
       
       {/* Header */}
-      <header className="border-b border-post-yellow/20 py-3 md:py-4 px-4 md:px-6 bg-post-red sticky top-0 z-50 shadow-lg">
+      <header className="border-b border-slate-200 py-4 px-4 md:px-6 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 md:gap-4"
+            className="flex items-center gap-4"
           >
             {/* National Emblem */}
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" 
               alt="National Emblem" 
-              className="h-10 md:h-12 w-auto brightness-0 invert"
+              className="h-10 md:h-12 w-auto"
               referrerPolicy="no-referrer"
             />
             
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-inner overflow-hidden border-2 border-post-yellow">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-md overflow-hidden border-2 border-post-red">
               <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6rXlDr3gjOzsO9mrWzH3BIHgUS8ibUopZg&s" 
                 alt="Philately Logo" 
@@ -211,8 +211,8 @@ export default function App() {
               />
             </div>
             <div>
-              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-yellow">Philately</h1>
-              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-white/80 font-bold">Department of Posts</p>
+              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-red">Philately</h1>
+              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-ink/60 font-bold">Department of Posts</p>
             </div>
           </motion.div>
           
@@ -220,16 +220,16 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-4 md:gap-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white"
+            className="flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-ink"
           >
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Home</a>
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Exhibitions</a>
+            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Home</a>
+            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Exhibitions</a>
             
             {/* Other Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1 hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1 uppercase"
+                className="flex items-center gap-1 hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1 uppercase"
               >
                 Other
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -241,7 +241,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
+                    className="absolute top-full right-0 mt-4 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden py-2 z-[60]"
                   >
                     {[
                       { name: "Documents", action: () => setActiveView("documents") },
@@ -257,7 +257,7 @@ export default function App() {
                             item.action();
                             setIsDropdownOpen(false);
                           }}
-                          className="w-full text-left block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                          className="w-full text-left block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
                         >
                           {item.name}
                         </button>
@@ -265,7 +265,7 @@ export default function App() {
                         <a
                           key={item.name}
                           href={item.link}
-                          className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                          className="block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           {item.name}
@@ -278,11 +278,11 @@ export default function App() {
             </div>
             
             {/* India Post Logo */}
-            <div className="bg-white p-1 md:p-1.5 rounded-sm ml-1 md:ml-2">
+            <div className="bg-slate-50 p-2 rounded-lg ml-2 border border-slate-200">
               <img 
                 src="https://upload.wikimedia.org/wikipedia/en/3/32/India_Post.svg" 
                 alt="India Post" 
-                className="h-4 md:h-6 w-auto"
+                className="h-5 md:h-7 w-auto"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -292,46 +292,100 @@ export default function App() {
 
       {/* Hero Section */}
       {activeView !== "documents" && (
-        <section className="py-12 md:py-24 px-4 md:px-6 bg-slate-50 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-post-yellow/10 rounded-full -mr-24 md:-mr-32 -mt-24 md:-mt-32 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-post-red/5 rounded-full -ml-24 md:-ml-32 -mb-24 md:-mb-32 blur-3xl" />
+        <section className="relative bg-white overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#8b0000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
           
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.div
+          <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-28 flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
+            <div className="flex-1 text-center md:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-post-red/5 text-post-red px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 border border-post-red/10"
+              >
+                <Stamp className="w-4 h-4" />
+                Official Philately Portal
+              </motion.div>
+              
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="font-serif text-4xl md:text-7xl mb-6 md:mb-10 leading-[1.1] text-ink font-bold"
+              >
+                Preserving History, <br />
+                <span className="text-post-red">One Stamp at a Time.</span>
+              </motion.h2>
+              
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="text-lg md:text-xl text-ink/70 max-w-xl leading-relaxed mb-10"
+              >
+                Explore the vibrant world of Indian philately. From commemorative stamps to 
+                national competitions, discover our rich postal heritage.
+              </motion.p>
+
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="bg-post-red text-white px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-900 transition-all shadow-xl shadow-post-red/20"
+                >
+                  Explore Collection
+                </motion.button>
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="bg-white text-post-red border-2 border-post-red px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-post-red hover:text-white transition-all"
+                >
+                  Join Club
+                </motion.button>
+              </div>
+            </div>
+
+            <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block bg-post-red/10 text-post-red px-3 md:px-4 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 md:mb-6"
+              transition={{ delay: 0.4 }}
+              className="flex-1 relative"
             >
-              Department of Posts
+              <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 rotate-3 hover:rotate-0 transition-transform duration-500">
+                <img 
+                  src="https://postagestamps.gov.in/Uploads/2024/Stamp%20Sarangdhar.jpg" 
+                  alt="Featured Stamp" 
+                  className="w-full h-auto rounded-lg"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute -bottom-6 -left-6 bg-post-yellow p-4 rounded-xl shadow-xl border-4 border-white rotate-[-6deg]">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-post-red">New Issue</p>
+                  <p className="text-xs font-bold text-ink">Sarangdhar Das</p>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-post-yellow/20 rounded-full blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-post-red/10 rounded-full blur-3xl" />
             </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="font-serif text-3xl md:text-7xl mb-4 md:mb-8 leading-tight text-ink"
-            >
-              Connecting Hearts, <br />
-              <span className="text-post-red italic">Through Every Stamp.</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-base md:text-lg text-ink/70 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10"
-            >
-              Welcome to the official Philately portal. Discover the vibrant world of 
-              Indian stamps, competitions, and our rich postal heritage.
-            </motion.p>
+          </div>
 
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="bg-post-red text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/20"
-            >
-              Start Collecting
-            </motion.button>
+          {/* Quick Links Bar (Banking Style) */}
+          <div className="bg-slate-50 border-y border-slate-200 py-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-wrap justify-center md:justify-between items-center gap-8">
+              {[
+                { label: "Stamp Inventory", icon: Stamp },
+                { label: "Scholarships", icon: Award },
+                { label: "Competitions", icon: PenTool },
+                { label: "PDA Details", icon: CreditCard }
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 text-ink/60 hover:text-post-red cursor-pointer transition-colors group">
+                  <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest">{item.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -514,12 +568,9 @@ export default function App() {
                         window.scrollTo({ top: 400, behavior: 'smooth' });
                       }
                     }}
-                    className="group relative bg-white p-6 md:p-10 rounded-2xl border-2 border-post-red/20 shadow-sm hover:border-post-red hover:shadow-2xl hover:shadow-post-red/10 transition-all duration-500 flex flex-col h-full overflow-hidden"
+                    className="group relative bg-white p-8 md:p-10 rounded-xl border border-slate-200 shadow-sm hover:border-post-red hover:shadow-xl transition-all duration-500 flex flex-col h-full overflow-hidden"
                   >
-                  {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-post-yellow/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:bg-post-yellow/20 transition-colors duration-500" />
-                  
-                  <div className={`${card.color} mb-8 p-4 bg-slate-50 rounded-xl w-fit group-hover:bg-post-red group-hover:text-white transition-all duration-500`}>
+                  <div className={`${card.color} mb-8 p-4 bg-slate-50 rounded-lg w-fit group-hover:bg-post-red group-hover:text-white transition-all duration-500`}>
                     <card.icon className="w-8 h-8" />
                   </div>
                   
@@ -531,9 +582,13 @@ export default function App() {
                     {card.description}
                   </p>
                   
-                  <div className="flex items-center text-xs font-black uppercase tracking-[0.2em] text-post-red group-hover:gap-3 transition-all">
-                    {card.title === "Deen Dayal SPARSH Yojana" || card.title === "Photo Gallery" ? "View Details" : "Learn More"}
-                    <ChevronRight className="w-4 h-4" />
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-post-red">
+                      {card.title === "Deen Dayal SPARSH Yojana" || card.title === "Photo Gallery" ? "View Details" : "Learn More"}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-post-red/5 flex items-center justify-center group-hover:bg-post-red group-hover:text-white transition-all">
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </motion.a>
               ))}

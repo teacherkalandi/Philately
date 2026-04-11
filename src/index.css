@@ -7,8 +7,8 @@
   
   --color-paper: #ffffff;
   --color-ink: #1a1a1a;
-  --color-post-red: #e31e24;
-  --color-post-yellow: #ffd200;
+  --color-post-red: #8b0000;
+  --color-post-yellow: #ffcc00;
 }
 
 @layer base {
