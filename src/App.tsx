@@ -111,6 +111,13 @@ const cards = [
     link: "#"
   },
   {
+    title: "Photo Gallery",
+    description: "View our collection of philatelic photos, stamps, and first day covers.",
+    icon: ImageIcon,
+    color: "text-amber-500",
+    link: "#"
+  },
+  {
     title: "Philately Club Details",
     description: "Find information about local philately clubs and community gatherings.",
     icon: Users,
@@ -144,7 +151,7 @@ const sparshCards = [
 ];
 
 export default function App() {
-  const [activeView, setActiveView] = useState("main");
+  const [activeView, setActiveView] = useState<"main" | "sparsh" | "documents" | "gallery">("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<null | number>(null);
   const [documents, setDocuments] = useState([
@@ -317,48 +324,6 @@ export default function App() {
               Indian stamps, competitions, and our rich postal heritage.
             </motion.p>
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-post-red to-post-yellow rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative bg-white p-2 rounded-lg shadow-xl">
-                  <img 
-                    src="https://postagestamps.gov.in/Uploads/2024/Stamp%20Sarangdhar.jpg" 
-                    alt="Featured Stamp - Sarangdhar" 
-                    className="h-48 md:h-64 w-auto rounded border border-slate-100"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="mt-2 text-[10px] font-bold text-ink/40 uppercase tracking-widest text-center">
-                    Commemorative Stamp
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-post-yellow to-post-red rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative bg-white p-2 rounded-lg shadow-xl">
-                  <img 
-                    src="https://postagestamps.gov.in/Uploads/2024/FDC%20Sarangdhar.jpg" 
-                    alt="First Day Cover - Sarangdhar" 
-                    className="h-48 md:h-64 w-auto rounded border border-slate-100"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="mt-2 text-[10px] font-bold text-ink/40 uppercase tracking-widest text-center">
-                    First Day Cover (FDC)
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -453,6 +418,55 @@ export default function App() {
               </div>
             )}
           </div>
+        ) : activeView === "gallery" ? (
+          /* Photo Gallery View */
+          <div>
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <button 
+                  onClick={() => setActiveView("main")}
+                  className="p-2 hover:bg-slate-100 rounded-full transition-colors text-post-red"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink">Philatelic Gallery</h3>
+              </div>
+              <p className="text-ink/60 max-w-2xl mx-auto">
+                A visual journey through the artistry and history of Indian postage stamps and postal artifacts.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {galleryImages.map((image, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => setSelectedGalleryImage(index)}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg"
+                >
+                  <div className="aspect-[4/5] overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-ink font-bold text-lg mb-1 group-hover:text-post-red transition-colors">{image.title}</h4>
+                    <p className="text-ink/60 text-xs line-clamp-2 mb-4">{image.description}</p>
+                    <div className="flex items-center gap-2 text-post-red text-[10px] font-bold uppercase tracking-widest">
+                      <Maximize2 className="w-3 h-3" />
+                      View Full Size
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         ) : (
           /* Cards Grid (Our Programs / SPARSH) */
           <div>
@@ -494,6 +508,10 @@ export default function App() {
                         e.preventDefault();
                         setActiveView("sparsh");
                         window.scrollTo({ top: 400, behavior: 'smooth' });
+                      } else if (card.title === "Photo Gallery") {
+                        e.preventDefault();
+                        setActiveView("gallery");
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
                       }
                     }}
                     className="group relative bg-white p-6 md:p-10 rounded-2xl border-2 border-post-red/20 shadow-sm hover:border-post-red hover:shadow-2xl hover:shadow-post-red/10 transition-all duration-500 flex flex-col h-full overflow-hidden"
@@ -514,53 +532,12 @@ export default function App() {
                   </p>
                   
                   <div className="flex items-center text-xs font-black uppercase tracking-[0.2em] text-post-red group-hover:gap-3 transition-all">
-                    {card.title === "Deen Dayal SPARSH Yojana" ? "View Details" : "Learn More"}
+                    {card.title === "Deen Dayal SPARSH Yojana" || card.title === "Photo Gallery" ? "View Details" : "Learn More"}
                     <ChevronRight className="w-4 h-4" />
                   </div>
                 </motion.a>
               ))}
               </AnimatePresence>
-            </div>
-
-            {/* Photo Gallery Section */}
-            <div className="mt-24 pt-24 border-t border-ink/5">
-              <div className="text-center mb-16">
-                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink mb-4">Philatelic Gallery</h3>
-                <p className="text-ink/60 max-w-2xl mx-auto">
-                  A visual journey through the artistry and history of Indian postage stamps and postal artifacts.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {galleryImages.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => setSelectedGalleryImage(index)}
-                    className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg"
-                  >
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <h4 className="text-white font-bold text-lg mb-1">{image.title}</h4>
-                      <p className="text-white/70 text-xs line-clamp-2">{image.description}</p>
-                      <div className="mt-4 flex items-center gap-2 text-post-yellow text-[10px] font-bold uppercase tracking-widest">
-                        <Maximize2 className="w-3 h-3" />
-                        View Full Size
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
         )}
