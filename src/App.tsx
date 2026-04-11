@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   FileText, 
@@ -11,7 +11,15 @@ import {
   Stamp,
   ArrowLeft,
   Calendar,
-  ChevronDown
+  ChevronDown,
+  Youtube,
+  Image as ImageIcon,
+  Video,
+  FilePlus,
+  ExternalLink,
+  Trash2,
+  Plus,
+  File
 } from "lucide-react";
 
 const cards = [
@@ -48,14 +56,14 @@ const cards = [
     description: "Find information about local philately clubs and community gatherings.",
     icon: Users,
     color: "text-emerald-600",
-    link: "#"
+    link: "https://docs.google.com/spreadsheets/d/1JeBXI8qf6d79ODMjv7240BzvaTCwwEGFJw7wMGP8dIo/edit?usp=drivesdk"
   },
   {
     title: "Philately Deposit Account Details",
     description: "Manage your PDA for hassle-free collection of new stamps and special covers.",
     icon: CreditCard,
     color: "text-indigo-600",
-    link: "#"
+    link: "https://docs.google.com/spreadsheets/d/1oBhZsmrEQudtnLwi6dacm1N_gdhA2AS6dbUEZ2C1190/edit?usp=drivesdk"
   }
 ];
 
@@ -79,8 +87,32 @@ const sparshCards = [
 export default function App() {
   const [activeView, setActiveView] = useState("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [documents, setDocuments] = useState([
+    { id: '1', title: 'Philately Guide 2025', type: 'document', url: '#', date: '2025-04-10' },
+    { id: '2', title: 'Stamp Collection Tutorial', type: 'youtube', url: 'https://youtube.com', date: '2025-04-09' },
+    { id: '3', title: 'Exhibition Photo 01', type: 'photo', url: 'https://picsum.photos/seed/stamp/800/600', date: '2025-04-08' },
+  ]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [newDoc, setNewDoc] = useState({ title: '', type: 'document', url: '' });
 
   const currentCards = activeView === "main" ? cards : sparshCards;
+
+  const addDocument = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newDoc.title || !newDoc.url) return;
+    const doc = {
+      id: Date.now().toString(),
+      ...newDoc,
+      date: new Date().toISOString().split('T')[0]
+    };
+    setDocuments([doc, ...documents]);
+    setNewDoc({ title: '', type: 'document', url: '' });
+    setIsAddModalOpen(false);
+  };
+
+  const deleteDocument = (id: string) => {
+    setDocuments(documents.filter(d => d.id !== id));
+  };
 
   return (
     <div className="min-h-screen bg-white selection:bg-post-yellow selection:text-post-red">
@@ -145,19 +177,33 @@ export default function App() {
                     className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
                   >
                     {[
+                      { name: "Documents", action: () => setActiveView("documents") },
                       { name: "Consolidation", link: "https://stampinventorydkl.vercel.app/" },
                       { name: "Contact Details of Schools", link: "#" },
                       { name: "Philately Forms", link: "#" },
                       { name: "Archive", link: "#" }
                     ].map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.link}
-                        className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        {item.name}
-                      </a>
+                      item.action ? (
+                        <button
+                          key={item.name}
+                          onClick={() => {
+                            item.action();
+                            setIsDropdownOpen(false);
+                          }}
+                          className="w-full text-left block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                        >
+                          {item.name}
+                        </button>
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.link}
+                          className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          {item.name}
+                        </a>
+                      )
                     ))}
                   </motion.div>
                 )}
@@ -178,116 +224,279 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-12 md:py-24 px-4 md:px-6 bg-slate-50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-post-yellow/10 rounded-full -mr-24 md:-mr-32 -mt-24 md:-mt-32 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-post-red/5 rounded-full -ml-24 md:-ml-32 -mb-24 md:-mb-32 blur-3xl" />
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block bg-post-red/10 text-post-red px-3 md:px-4 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 md:mb-6"
-          >
-            Department of Posts
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="font-serif text-3xl md:text-7xl mb-4 md:mb-8 leading-tight text-ink"
-          >
-            Connecting Hearts, <br />
-            <span className="text-post-red italic">Through Every Stamp.</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-base md:text-lg text-ink/70 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10"
-          >
-            Welcome to the official Philately portal. Discover the vibrant world of 
-            Indian stamps, competitions, and our rich postal heritage.
-          </motion.p>
-          <motion.button
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-post-red text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/20"
-          >
-            Start Collecting
-          </motion.button>
-        </div>
-      </section>
-
-      {/* Cards Grid */}
-      <main className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-24">
-        <div className="flex items-center justify-between mb-8 md:mb-12">
-          <div className="flex items-center gap-2 md:gap-4 flex-grow">
-            <div className="h-px bg-ink/10 flex-grow" />
-            <h3 className="font-serif text-xl md:text-3xl font-bold text-ink whitespace-nowrap">
-              {activeView === "main" ? "Our Programs" : "SPARSH Details"}
-            </h3>
-            <div className="h-px bg-ink/10 flex-grow" />
-          </div>
+      {activeView !== "documents" && (
+        <section className="py-12 md:py-24 px-4 md:px-6 bg-slate-50 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-post-yellow/10 rounded-full -mr-24 md:-mr-32 -mt-24 md:-mt-32 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-post-red/5 rounded-full -ml-24 md:-ml-32 -mb-24 md:-mb-32 blur-3xl" />
           
-          {activeView !== "main" && (
-            <motion.button
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              onClick={() => setActiveView("main")}
-              className="ml-4 md:ml-6 flex items-center gap-1 md:gap-2 text-post-red font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-post-red hover:text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border-2 border-post-red transition-all"
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block bg-post-red/10 text-post-red px-3 md:px-4 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 md:mb-6"
             >
-              <ArrowLeft className="w-3 h-3 md:w-4 md:h-4" />
-              Back
+              Department of Posts
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="font-serif text-3xl md:text-7xl mb-4 md:mb-8 leading-tight text-ink"
+            >
+              Connecting Hearts, <br />
+              <span className="text-post-red italic">Through Every Stamp.</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-base md:text-lg text-ink/70 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10"
+            >
+              Welcome to the official Philately portal. Discover the vibrant world of 
+              Indian stamps, competitions, and our rich postal heritage.
+            </motion.p>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="bg-post-red text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/20"
+            >
+              Start Collecting
             </motion.button>
-          )}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence mode="wait">
-            {currentCards.map((card, index) => (
-              <motion.a
-                key={card.title}
-                href={card.link}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ delay: 0.1 * index }}
-                whileHover={{ y: -10 }}
-                onClick={(e) => {
-                  if (card.title === "Deen Dayal SPARSH Yojana") {
-                    e.preventDefault();
-                    setActiveView("sparsh");
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                  }
-                }}
-                className="group relative bg-white p-6 md:p-10 rounded-2xl border-2 border-post-red/20 shadow-sm hover:border-post-red hover:shadow-2xl hover:shadow-post-red/10 transition-all duration-500 flex flex-col h-full overflow-hidden"
+          </div>
+        </section>
+      )}
+
+      {/* Main Content Area */}
+      <main className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-24">
+        {activeView === "documents" ? (
+          /* Document Repository Section */
+          <div>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+              <div>
+                <div className="flex items-center gap-4 mb-2">
+                  <button 
+                    onClick={() => setActiveView("main")}
+                    className="p-2 hover:bg-slate-100 rounded-full transition-colors text-post-red"
+                  >
+                    <ArrowLeft className="w-6 h-6" />
+                  </button>
+                  <h3 className="font-serif text-3xl md:text-4xl font-bold text-ink">Document Repository</h3>
+                </div>
+                <p className="text-ink/60 ml-12">Access and manage all philatelic resources in one place.</p>
+              </div>
+              <button 
+                onClick={() => setIsAddModalOpen(true)}
+                className="flex items-center justify-center gap-2 bg-post-red text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-all shadow-lg"
               >
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-post-yellow/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:bg-post-yellow/20 transition-colors duration-500" />
-              
-              <div className={`${card.color} mb-8 p-4 bg-slate-50 rounded-xl w-fit group-hover:bg-post-red group-hover:text-white transition-all duration-500`}>
-                <card.icon className="w-8 h-8" />
+                <Plus className="w-4 h-4" />
+                Add Resource
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence>
+                {documents.map((doc) => (
+                  <motion.div
+                    key={doc.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="bg-white p-6 rounded-2xl border-2 border-slate-100 hover:border-post-red/30 transition-all group"
+                  >
+                    <div className="flex items-start justify-between mb-6">
+                      <div className={`p-3 rounded-xl ${
+                        doc.type === 'youtube' ? 'bg-red-50 text-red-600' :
+                        doc.type === 'photo' ? 'bg-blue-50 text-blue-600' :
+                        doc.type === 'video' ? 'bg-purple-50 text-purple-600' :
+                        'bg-emerald-50 text-emerald-600'
+                      }`}>
+                        {doc.type === 'youtube' && <Youtube className="w-6 h-6" />}
+                        {doc.type === 'photo' && <ImageIcon className="w-6 h-6" />}
+                        {doc.type === 'video' && <Video className="w-6 h-6" />}
+                        {doc.type === 'document' && <FileText className="w-6 h-6" />}
+                        {doc.type === 'form' && <FilePlus className="w-6 h-6" />}
+                      </div>
+                      <button 
+                        onClick={() => deleteDocument(doc.id)}
+                        className="text-slate-300 hover:text-red-500 transition-colors p-2"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    
+                    <h4 className="font-bold text-lg text-ink mb-2 line-clamp-1">{doc.title}</h4>
+                    <p className="text-xs text-ink/40 uppercase tracking-widest font-bold mb-6">{doc.date}</p>
+                    
+                    <a 
+                      href={doc.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 bg-slate-50 rounded-xl text-ink font-bold text-xs uppercase tracking-widest group-hover:bg-post-red group-hover:text-white transition-all"
+                    >
+                      View Resource
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {documents.length === 0 && (
+              <div className="text-center py-24 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+                <File className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                <p className="text-slate-500 font-medium">No documents found. Start by adding one!</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* Cards Grid (Our Programs / SPARSH) */
+          <div>
+            <div className="flex items-center justify-between mb-8 md:mb-12">
+              <div className="flex items-center gap-2 md:gap-4 flex-grow">
+                <div className="h-px bg-ink/10 flex-grow" />
+                <h3 className="font-serif text-xl md:text-3xl font-bold text-ink whitespace-nowrap">
+                  {activeView === "main" ? "Our Programs" : "SPARSH Details"}
+                </h3>
+                <div className="h-px bg-ink/10 flex-grow" />
               </div>
               
-              <h3 className="font-serif text-2xl font-bold mb-4 text-ink group-hover:text-post-red transition-colors duration-300">
-                {card.title}
-              </h3>
-              
-              <p className="text-ink/60 leading-relaxed mb-10 flex-grow text-sm">
-                {card.description}
-              </p>
-              
-              <div className="flex items-center text-xs font-black uppercase tracking-[0.2em] text-post-red group-hover:gap-3 transition-all">
-                {card.title === "Deen Dayal SPARSH Yojana" ? "View Details" : "Learn More"}
-                <ChevronRight className="w-4 h-4" />
-              </div>
-            </motion.a>
-          ))}
-          </AnimatePresence>
-        </div>
+              {activeView !== "main" && (
+                <motion.button
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  onClick={() => setActiveView("main")}
+                  className="ml-4 md:ml-6 flex items-center gap-1 md:gap-2 text-post-red font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-post-red hover:text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border-2 border-post-red transition-all"
+                >
+                  <ArrowLeft className="w-3 h-3 md:w-4 md:h-4" />
+                  Back
+                </motion.button>
+              )}
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <AnimatePresence mode="wait">
+                {currentCards.map((card, index) => (
+                  <motion.a
+                    key={card.title}
+                    href={card.link}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ delay: 0.1 * index }}
+                    whileHover={{ y: -10 }}
+                    onClick={(e) => {
+                      if (card.title === "Deen Dayal SPARSH Yojana") {
+                        e.preventDefault();
+                        setActiveView("sparsh");
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
+                      }
+                    }}
+                    className="group relative bg-white p-6 md:p-10 rounded-2xl border-2 border-post-red/20 shadow-sm hover:border-post-red hover:shadow-2xl hover:shadow-post-red/10 transition-all duration-500 flex flex-col h-full overflow-hidden"
+                  >
+                  {/* Decorative corner */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-post-yellow/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:bg-post-yellow/20 transition-colors duration-500" />
+                  
+                  <div className={`${card.color} mb-8 p-4 bg-slate-50 rounded-xl w-fit group-hover:bg-post-red group-hover:text-white transition-all duration-500`}>
+                    <card.icon className="w-8 h-8" />
+                  </div>
+                  
+                  <h3 className="font-serif text-2xl font-bold mb-4 text-ink group-hover:text-post-red transition-colors duration-300">
+                    {card.title}
+                  </h3>
+                  
+                  <p className="text-ink/60 leading-relaxed mb-10 flex-grow text-sm">
+                    {card.description}
+                  </p>
+                  
+                  <div className="flex items-center text-xs font-black uppercase tracking-[0.2em] text-post-red group-hover:gap-3 transition-all">
+                    {card.title === "Deen Dayal SPARSH Yojana" ? "View Details" : "Learn More"}
+                    <ChevronRight className="w-4 h-4" />
+                  </div>
+                </motion.a>
+              ))}
+              </AnimatePresence>
+            </div>
+          </div>
+        )}
       </main>
+
+      {/* Add Document Modal */}
+      <AnimatePresence>
+        {isAddModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAddModalOpen(false)}
+              className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden p-8"
+            >
+              <h3 className="font-serif text-2xl font-bold text-ink mb-6">Add New Resource</h3>
+              <form onSubmit={addDocument} className="space-y-6">
+                <div>
+                  <label className="block text-[10px] uppercase tracking-widest font-black text-ink/40 mb-2">Title</label>
+                  <input 
+                    type="text" 
+                    value={newDoc.title}
+                    onChange={(e) => setNewDoc({...newDoc, title: e.target.value})}
+                    placeholder="e.g. Philately Form 2025"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:border-post-red outline-none transition-all font-medium"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-widest font-black text-ink/40 mb-2">Resource Type</label>
+                  <select 
+                    value={newDoc.type}
+                    onChange={(e) => setNewDoc({...newDoc, type: e.target.value as any})}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:border-post-red outline-none transition-all font-medium appearance-none bg-white"
+                  >
+                    <option value="document">Document / PDF</option>
+                    <option value="form">Official Form</option>
+                    <option value="youtube">YouTube Link</option>
+                    <option value="photo">Photo / Image</option>
+                    <option value="video">Video File</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-widest font-black text-ink/40 mb-2">URL / Link</label>
+                  <input 
+                    type="url" 
+                    value={newDoc.url}
+                    onChange={(e) => setNewDoc({...newDoc, url: e.target.value})}
+                    placeholder="https://example.com/resource"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:border-post-red outline-none transition-all font-medium"
+                    required
+                  />
+                </div>
+                <div className="flex gap-4 pt-4">
+                  <button 
+                    type="button"
+                    onClick={() => setIsAddModalOpen(false)}
+                    className="flex-grow py-4 rounded-xl font-bold uppercase tracking-widest text-xs text-ink/40 hover:bg-slate-50 transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit"
+                    className="flex-grow bg-post-red text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-all shadow-lg"
+                  >
+                    Add Resource
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <footer className="bg-post-red text-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
