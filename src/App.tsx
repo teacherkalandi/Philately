@@ -19,8 +19,46 @@ import {
   ExternalLink,
   Trash2,
   Plus,
-  File
+  File,
+  BookOpen,
+  Scroll,
+  FileCheck,
+  Maximize2,
+  X
 } from "lucide-react";
+
+const galleryImages = [
+  {
+    url: "https://postagestamps.gov.in/Uploads/2024/Stamp%20Sarangdhar.jpg",
+    title: "Commemorative Stamp - Sarangdhar Das",
+    description: "Issued in 2024 to honor the legacy of Sarangdhar Das."
+  },
+  {
+    url: "https://postagestamps.gov.in/Uploads/2024/FDC%20Sarangdhar.jpg",
+    title: "First Day Cover - Sarangdhar Das",
+    description: "Official First Day Cover with special cancellation from Dhenkanal."
+  },
+  {
+    url: "https://picsum.photos/seed/philately1/800/1000",
+    title: "Heritage Collection",
+    description: "Exploring the rich postal heritage of India through stamps."
+  },
+  {
+    url: "https://picsum.photos/seed/philately2/800/1000",
+    title: "Special Cancellations",
+    description: "Unique postmarks and cancellations from various postal circles."
+  },
+  {
+    url: "https://picsum.photos/seed/philately3/800/1000",
+    title: "Rare Stamps",
+    description: "A showcase of rare and limited edition commemorative stamps."
+  },
+  {
+    url: "https://picsum.photos/seed/philately4/800/1000",
+    title: "Postal History",
+    description: "Documents and artifacts tracing the evolution of India Post."
+  }
+];
 
 const cards = [
   {
@@ -45,10 +83,31 @@ const cards = [
     link: "#"
   },
   {
-    title: "Universal Letter Writing Competition",
+    title: "UPU Letter Writing Competition",
     description: "International competition organized by UPU for young people worldwide.",
     icon: PenTool,
     color: "text-purple-600",
+    link: "#"
+  },
+  {
+    title: "Postage Stamps",
+    description: "Explore the collection of commemorative and definitive postage stamps of India.",
+    icon: Stamp,
+    color: "text-rose-600",
+    link: "https://postagestamps.gov.in/"
+  },
+  {
+    title: "Documents and Forms",
+    description: "Download essential philatelic forms, applications, and official documents.",
+    icon: FileCheck,
+    color: "text-cyan-600",
+    link: "#"
+  },
+  {
+    title: "PO Orders/ Rules",
+    description: "Access Post Office orders, rules, and guidelines related to philately.",
+    icon: Scroll,
+    color: "text-amber-700",
     link: "#"
   },
   {
@@ -87,6 +146,7 @@ const sparshCards = [
 export default function App() {
   const [activeView, setActiveView] = useState("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedGalleryImage, setSelectedGalleryImage] = useState<null | number>(null);
   const [documents, setDocuments] = useState([
     { id: '1', title: 'Philately Guide 2025', type: 'document', url: '#', date: '2025-04-10' },
     { id: '2', title: 'Stamp Collection Tutorial', type: 'youtube', url: 'https://youtube.com', date: '2025-04-09' },
@@ -256,6 +316,49 @@ export default function App() {
               Welcome to the official Philately portal. Discover the vibrant world of 
               Indian stamps, competitions, and our rich postal heritage.
             </motion.p>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-post-red to-post-yellow rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative bg-white p-2 rounded-lg shadow-xl">
+                  <img 
+                    src="https://postagestamps.gov.in/Uploads/2024/Stamp%20Sarangdhar.jpg" 
+                    alt="Featured Stamp - Sarangdhar" 
+                    className="h-48 md:h-64 w-auto rounded border border-slate-100"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="mt-2 text-[10px] font-bold text-ink/40 uppercase tracking-widest text-center">
+                    Commemorative Stamp
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.7 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-post-yellow to-post-red rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative bg-white p-2 rounded-lg shadow-xl">
+                  <img 
+                    src="https://postagestamps.gov.in/Uploads/2024/FDC%20Sarangdhar.jpg" 
+                    alt="First Day Cover - Sarangdhar" 
+                    className="h-48 md:h-64 w-auto rounded border border-slate-100"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="mt-2 text-[10px] font-bold text-ink/40 uppercase tracking-widest text-center">
+                    First Day Cover (FDC)
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -418,9 +521,93 @@ export default function App() {
               ))}
               </AnimatePresence>
             </div>
+
+            {/* Photo Gallery Section */}
+            <div className="mt-24 pt-24 border-t border-ink/5">
+              <div className="text-center mb-16">
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink mb-4">Philatelic Gallery</h3>
+                <p className="text-ink/60 max-w-2xl mx-auto">
+                  A visual journey through the artistry and history of Indian postage stamps and postal artifacts.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {galleryImages.map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => setSelectedGalleryImage(index)}
+                    className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg"
+                  >
+                    <div className="aspect-[4/5] overflow-hidden">
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      <h4 className="text-white font-bold text-lg mb-1">{image.title}</h4>
+                      <p className="text-white/70 text-xs line-clamp-2">{image.description}</p>
+                      <div className="mt-4 flex items-center gap-2 text-post-yellow text-[10px] font-bold uppercase tracking-widest">
+                        <Maximize2 className="w-3 h-3" />
+                        View Full Size
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </main>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedGalleryImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/95 p-4 md:p-10"
+            onClick={() => setSelectedGalleryImage(null)}
+          >
+            <button
+              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2"
+              onClick={() => setSelectedGalleryImage(null)}
+            >
+              <X className="w-8 h-8" />
+            </button>
+            
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl w-full max-h-full flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={galleryImages[selectedGalleryImage].url}
+                alt={galleryImages[selectedGalleryImage].title}
+                className="max-h-[70vh] w-auto rounded-lg shadow-2xl border-4 border-white/10"
+                referrerPolicy="no-referrer"
+              />
+              <div className="mt-8 text-center text-white max-w-2xl">
+                <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
+                  {galleryImages[selectedGalleryImage].title}
+                </h3>
+                <p className="text-white/60 text-sm md:text-base">
+                  {galleryImages[selectedGalleryImage].description}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Add Document Modal */}
       <AnimatePresence>
