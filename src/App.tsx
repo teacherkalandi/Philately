@@ -187,22 +187,22 @@ export default function App() {
       <div className="bg-post-red h-1 w-full" />
       
       {/* Header */}
-      <header className="border-b border-slate-200 py-4 px-4 md:px-6 bg-white sticky top-0 z-50 shadow-sm">
+      <header className="border-b border-post-yellow/20 py-3 md:py-4 px-4 md:px-6 bg-post-red sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-3 md:gap-4"
           >
             {/* National Emblem */}
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" 
               alt="National Emblem" 
-              className="h-10 md:h-12 w-auto"
+              className="h-10 md:h-12 w-auto brightness-0 invert"
               referrerPolicy="no-referrer"
             />
             
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-md overflow-hidden border-2 border-post-red">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-inner overflow-hidden border-2 border-post-yellow">
               <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6rXlDr3gjOzsO9mrWzH3BIHgUS8ibUopZg&s" 
                 alt="Philately Logo" 
@@ -211,8 +211,8 @@ export default function App() {
               />
             </div>
             <div>
-              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-red">Philately</h1>
-              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-ink/60 font-bold">Department of Posts</p>
+              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-yellow">Philately</h1>
+              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-white/80 font-bold">Department of Posts</p>
             </div>
           </motion.div>
           
@@ -220,16 +220,16 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-ink"
+            className="flex items-center gap-4 md:gap-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white"
           >
-            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Home</a>
-            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Exhibitions</a>
+            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Home</a>
+            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Exhibitions</a>
             
             {/* Other Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1 hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1 uppercase"
+                className="flex items-center gap-1 hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1 uppercase"
               >
                 Other
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -241,7 +241,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full right-0 mt-4 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden py-2 z-[60]"
+                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
                   >
                     {[
                       { name: "Documents", action: () => setActiveView("documents") },
@@ -257,7 +257,7 @@ export default function App() {
                             item.action();
                             setIsDropdownOpen(false);
                           }}
-                          className="w-full text-left block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
+                          className="w-full text-left block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
                         >
                           {item.name}
                         </button>
@@ -265,7 +265,7 @@ export default function App() {
                         <a
                           key={item.name}
                           href={item.link}
-                          className="block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
+                          className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           {item.name}
@@ -278,11 +278,11 @@ export default function App() {
             </div>
             
             {/* India Post Logo */}
-            <div className="bg-slate-50 p-2 rounded-lg ml-2 border border-slate-200">
+            <div className="bg-white p-1 md:p-1.5 rounded-sm ml-1 md:ml-2">
               <img 
                 src="https://upload.wikimedia.org/wikipedia/en/3/32/India_Post.svg" 
                 alt="India Post" 
-                className="h-5 md:h-7 w-auto"
+                className="h-4 md:h-6 w-auto"
                 referrerPolicy="no-referrer"
               />
             </div>
