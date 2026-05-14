@@ -65,101 +65,89 @@ const cards = [
     title: "Philately Report",
     description: "Access comprehensive annual reports and statistical data on philatelic activities.",
     icon: FileText,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    hover: "hover:bg-blue-600",
-    border: "border-blue-100",
+    vibrantBg: "bg-blue-600",
+    iconClass: "text-blue-600",
     link: "#"
   },
   {
     title: "Dhai Akhar",
     description: "National level letter writing competition to promote the art of letter writing.",
     icon: Mail,
-    color: "text-orange-600",
-    bg: "bg-orange-50",
-    hover: "hover:bg-orange-600",
-    border: "border-orange-100",
+    vibrantBg: "bg-teal-500",
+    iconClass: "text-teal-500",
     link: "#"
   },
   {
     title: "Deen Dayal SPARSH Yojana",
     description: "Scholarship for Promotion of Aptitude & Research in Stamps as a Hobby.",
     icon: Award,
-    color: "text-red-600",
-    bg: "bg-red-50",
-    hover: "hover:bg-red-600",
-    border: "border-red-100",
+    vibrantBg: "bg-red-500",
+    iconClass: "text-red-500",
     link: "#"
   },
   {
     title: "UPU Letter Writing Competition",
     description: "International competition organized by UPU for young people worldwide.",
     icon: PenTool,
-    color: "text-purple-600",
-    bg: "bg-purple-50",
-    hover: "hover:bg-purple-600",
-    border: "border-purple-100",
+    vibrantBg: "bg-purple-500",
+    iconClass: "text-purple-500",
     link: "#"
   },
   {
-    title: "Postage Stamps",
+    title: "Postage Stamp Dash Board",
     description: "Explore the collection of commemorative and definitive postage stamps of India.",
     icon: Stamp,
-    color: "text-rose-600",
-    bg: "bg-rose-50",
-    hover: "hover:bg-rose-600",
-    border: "border-rose-100",
-    link: "https://postagestamps.gov.in/"
+    vibrantBg: "bg-orange-500",
+    iconClass: "text-orange-500",
+    link: "https://stampinventorydkl.vercel.app/"
   },
   {
     title: "Documents and Forms",
     description: "Download essential philatelic forms, applications, and official documents.",
     icon: FileCheck,
-    color: "text-cyan-600",
-    bg: "bg-cyan-50",
-    hover: "hover:bg-cyan-600",
-    border: "border-cyan-100",
+    vibrantBg: "bg-amber-500",
+    iconClass: "text-amber-500",
     link: "#"
   },
   {
     title: "PO Orders/ Rules",
     description: "Access Post Office orders, rules, and guidelines related to philately.",
     icon: Scroll,
-    color: "text-amber-700",
-    bg: "bg-amber-50",
-    hover: "hover:bg-amber-700",
-    border: "border-amber-100",
+    vibrantBg: "bg-emerald-500",
+    iconClass: "text-emerald-500",
     link: "#"
   },
   {
     title: "Photo Gallery",
     description: "View our collection of philatelic photos, stamps, and first day covers.",
     icon: ImageIcon,
-    color: "text-pink-600",
-    bg: "bg-pink-50",
-    hover: "hover:bg-pink-600",
-    border: "border-pink-100",
+    vibrantBg: "bg-rose-500",
+    iconClass: "text-rose-500",
     link: "#"
   },
   {
     title: "Philately Club Details",
     description: "Find information about local philately clubs and community gatherings.",
     icon: Users,
-    color: "text-emerald-600",
-    bg: "bg-emerald-50",
-    hover: "hover:bg-emerald-600",
-    border: "border-emerald-100",
+    vibrantBg: "bg-indigo-600",
+    iconClass: "text-indigo-600",
     link: "https://docs.google.com/spreadsheets/d/1JeBXI8qf6d79ODMjv7240BzvaTCwwEGFJw7wMGP8dIo/edit?usp=drivesdk"
   },
   {
     title: "Philately Deposit Account Details",
     description: "Manage your PDA for hassle-free collection of new stamps and special covers.",
     icon: CreditCard,
-    color: "text-indigo-600",
-    bg: "bg-indigo-50",
-    hover: "hover:bg-indigo-600",
-    border: "border-indigo-100",
+    vibrantBg: "bg-cyan-600",
+    iconClass: "text-cyan-600",
     link: "https://docs.google.com/spreadsheets/d/1oBhZsmrEQudtnLwi6dacm1N_gdhA2AS6dbUEZ2C1190/edit?usp=drivesdk"
+  },
+  {
+    title: "Philately Videos",
+    description: "Watch informative videos and tutorials on the art of stamp collecting and heritage.",
+    icon: Youtube,
+    vibrantBg: "bg-red-600",
+    iconClass: "text-red-600",
+    link: "#"
   }
 ];
 
@@ -168,20 +156,16 @@ const sparshCards = [
     title: "SPARSH 2025-26",
     description: "Scholarship details and application process for the academic year 2025-26.",
     icon: Calendar,
-    color: "text-red-600",
-    bg: "bg-red-50",
-    hover: "hover:bg-red-600",
-    border: "border-red-100",
+    vibrantBg: "bg-red-500",
+    iconClass: "text-red-500",
     link: "https://sparsh-2025.vercel.app/"
   },
   {
     title: "SPARSH 2026-27",
     description: "Upcoming scholarship schedule and guidelines for the academic year 2026-27.",
     icon: Calendar,
-    color: "text-amber-600",
-    bg: "bg-amber-50",
-    hover: "hover:bg-amber-600",
-    border: "border-amber-100",
+    vibrantBg: "bg-amber-500",
+    iconClass: "text-amber-500",
     link: "#"
   }
 ];
@@ -197,8 +181,23 @@ const dhaiAkharLinks = [
   { title: "Directorate Link", url: "https://drive.google.com/drive/folders/1oAsk4ywFBFGyzL5wlqjxkARp1q9ptqWH" },
 ];
 
+const philatelyVideos = [
+  { title: "Video on Philately", url: "https://www.youtube.com/watch?v=xRqpJkO45mE&source_ve_path=OTY3MTQ&embeds_referring_euri=https%3A%2F%2Fsites.google.com%2F" },
+  { title: "Philately Informative video", url: "https://www.youtube.com/watch?v=9KhBjRVSsw0" },
+];
+
+const documentFormsLinks = [
+  { title: "Postage Stamp Web Site", url: "https://postagestamps.gov.in/" },
+  { title: "My Stamp Order Form", url: "https://postagestamps.gov.in/Pdf/Mystamporderform.pdf" },
+  { title: "Philately Deposit Account Opening Form", url: "https://postagestamps.gov.in/Pdf/Philately_Deposit_Account.pdf" },
+  { title: "Deen Dayal SPARSH Yojana: 2023 PPT", url: "https://deendayalsparshyojana.edgeone.app/" },
+  { title: "Previous Year Quiz: 2024", url: "https://drive.google.com/file/d/1_VvM2BYBcL8RzNYoCqETktMWp_iwKmML/view?usp=drive_link" },
+  { title: "Philately Quiz: Youtube Video", url: "https://www.youtube.com/watch?v=jRCkxTvxskM" },
+  { title: "Application for Philately Club", url: "https://drive.google.com/drive/folders/16hlRYHMKW7yocQ1oIDD0y1Pu1MOwQyL3?usp=drive_link" },
+];
+
 export default function App() {
-  const [activeView, setActiveView] = useState<"main" | "sparsh" | "documents" | "gallery" | "dhai_akhar">("main");
+  const [activeView, setActiveView] = useState<"main" | "sparsh" | "documents" | "gallery" | "dhai_akhar" | "videos" | "forms">("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<null | number>(null);
   const [documents, setDocuments] = useState([
@@ -239,7 +238,8 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-4 cursor-pointer"
+            onClick={() => setActiveView("main")}
           >
             {/* National Emblem */}
             <img 
@@ -269,7 +269,12 @@ export default function App() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-ink"
           >
-            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Home</a>
+            <button 
+              onClick={() => setActiveView("main")}
+              className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1 uppercase cursor-pointer"
+            >
+              Home
+            </button>
             <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Exhibitions</a>
             
             {/* Other Dropdown */}
@@ -343,8 +348,8 @@ export default function App() {
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#8b0000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
           
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-28 flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
-            <div className="flex-1 text-center md:text-left">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-32 flex flex-col items-center text-center relative z-10">
+            <div className="max-w-4xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -358,7 +363,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="font-serif text-4xl md:text-7xl mb-6 md:mb-10 leading-[1.1] text-ink font-bold"
+                className="font-serif text-4xl md:text-8xl mb-6 md:mb-10 leading-[1.1] text-ink font-bold"
               >
                 Preserving History, <br />
                 <span className="text-post-red">One Stamp at a Time.</span>
@@ -368,18 +373,18 @@ export default function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-lg md:text-xl text-ink/70 max-w-xl leading-relaxed mb-10"
+                className="text-lg md:text-2xl text-ink/70 max-w-2xl mx-auto leading-relaxed mb-12"
               >
                 Explore the vibrant world of Indian philately. From commemorative stamps to 
                 national competitions, discover our rich postal heritage.
               </motion.p>
 
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-6">
                 <motion.button
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="bg-post-red text-white px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-900 transition-all shadow-xl shadow-post-red/20"
+                  className="bg-post-red text-white px-10 md:px-12 py-4 md:py-6 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-red-900 transition-all shadow-xl shadow-post-red/20"
                 >
                   Explore Collection
                 </motion.button>
@@ -387,40 +392,12 @@ export default function App() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
-                  className="bg-white text-post-red border-2 border-post-red px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-post-red hover:text-white transition-all"
+                  className="bg-white text-post-red border-2 border-post-red px-10 md:px-12 py-4 md:py-6 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-post-red hover:text-white transition-all font-bold"
                 >
                   Join Club
                 </motion.button>
               </div>
             </div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex-1 relative min-h-[400px] flex items-center justify-center"
-            >
-              <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 rotate-3 hover:rotate-0 transition-transform duration-500 max-w-full">
-                <div className="overflow-hidden rounded-lg bg-slate-50 flex items-center justify-center aspect-[4/5] w-[280px] md:w-[350px]">
-                  <img 
-                    src="https://images.unsplash.com/photo-1579346617013-176f1c4e754a?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Featured Philately Stamp" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1594913366159-1832ffefba31?q=80&w=1000&auto=format&fit=crop';
-                    }}
-                  />
-                </div>
-                <div className="absolute -bottom-6 -left-6 bg-post-yellow p-4 rounded-xl shadow-xl border-4 border-white rotate-[-6deg]">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-post-red">Featured Item</p>
-                  <p className="text-xs font-bold text-ink">Heritage Collection</p>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-post-yellow/20 rounded-full blur-3xl" />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-post-red/10 rounded-full blur-3xl" />
-            </motion.div>
           </div>
 
           {/* Quick Links Bar (Banking Style) */}
@@ -553,15 +530,108 @@ export default function App() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-orange-500 hover:shadow-xl transition-all duration-300 flex items-center justify-between"
+                  className="group p-5 rounded-xl bg-orange-500 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between border-none"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all">
-                      <FileText className="w-5 h-5" />
+                    <div className="w-12 h-12 rounded-full bg-white text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <FileText className="w-6 h-6" />
                     </div>
-                    <span className="font-bold text-ink text-sm group-hover:text-orange-600 transition-colors">{link.title}</span>
+                    <span className="font-bold text-white text-sm md:text-base">{link.title}</span>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-slate-300 group-hover:text-orange-500" />
+                  <ExternalLink className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        ) : activeView === "videos" ? (
+          /* Philately Videos View */
+          <div>
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <button 
+                  onClick={() => setActiveView("main")}
+                  className="p-2 hover:bg-slate-100 rounded-full transition-colors text-post-red"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink text-center">Philately Videos</h3>
+              </div>
+              <p className="text-ink/60 max-w-2xl mx-auto">
+                Watch informative video content about Indian philately, heritage, and tutorials.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {philatelyVideos.map((video, index) => (
+                <motion.a
+                  key={index}
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group bg-red-600 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-none"
+                >
+                  <div className="aspect-video w-full bg-white/10 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
+                    <Youtube className="w-16 h-16 text-white group-hover:scale-110 transition-all duration-500 z-10" />
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 className="font-bold text-xl text-white mb-2">{video.title}</h4>
+                      <div className="flex items-center gap-2 text-[10px] font-black text-white/50 uppercase tracking-widest">
+                        <Video className="w-3 h-3" />
+                        YouTube Content
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-white text-red-600 flex items-center justify-center group-hover:scale-110 transition-all shadow-lg">
+                      <ExternalLink className="w-5 h-5" />
+                    </div>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        ) : activeView === "forms" ? (
+          /* Documents and Forms View */
+          <div>
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <button 
+                  onClick={() => setActiveView("main")}
+                  className="p-2 hover:bg-slate-100 rounded-full transition-colors text-post-red"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink text-center">Documents & Forms</h3>
+              </div>
+              <p className="text-ink/60 max-w-2xl mx-auto">
+                Access official application forms, educational resources, and useful philatelic links.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {documentFormsLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group p-5 rounded-xl bg-cyan-600 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between border-none"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-white text-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <FileCheck className="w-6 h-6" />
+                    </div>
+                    <span className="font-bold text-white text-sm md:text-base">{link.title}</span>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </motion.a>
               ))}
             </div>
@@ -664,29 +734,30 @@ export default function App() {
                         e.preventDefault();
                         setActiveView("dhai_akhar");
                         window.scrollTo({ top: 400, behavior: 'smooth' });
+                      } else if (card.title === "Philately Videos") {
+                        e.preventDefault();
+                        setActiveView("videos");
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
+                      } else if (card.title === "Documents and Forms") {
+                        e.preventDefault();
+                        setActiveView("forms");
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
                       }
                     }}
-                    className={`group relative p-8 md:p-10 rounded-2xl border ${card.border || 'border-slate-200'} ${card.bg || 'bg-white'} shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full overflow-hidden`}
+                    className={`group relative p-6 md:p-8 rounded-xl ${card.vibrantBg} shadow-lg hover:shadow-2xl transition-all duration-500 flex items-center gap-6 h-full overflow-hidden border-none`}
                   >
-                  <div className={`${card.color} mb-8 p-4 bg-white rounded-xl shadow-sm w-fit transition-all duration-500 group-hover:scale-110 group-hover:shadow-md`}>
-                    <card.icon className="w-8 h-8" />
+                  <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg transform transition-transform group-hover:scale-110">
+                    <card.icon className={`w-8 h-8 md:w-10 md:h-10 ${card.iconClass}`} />
                   </div>
                   
-                  <h3 className={`font-serif text-2xl font-bold mb-4 transition-colors duration-300 ${card.color}`}>
-                    {card.title}
-                  </h3>
-                  
-                  <p className="text-ink/70 leading-relaxed mb-10 flex-grow text-sm font-medium">
-                    {card.description}
-                  </p>
-                  
-                  <div className={`flex items-center justify-between pt-6 border-t ${card.border || 'border-slate-200'}`}>
-                    <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${card.color}`}>
-                      {card.title === "Deen Dayal SPARSH Yojana" || card.title === "Photo Gallery" ? "View Details" : "Learn More"}
-                    </span>
-                    <div className={`w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-post-red group-hover:text-white`}>
-                      <ChevronRight className="w-5 h-5" />
-                    </div>
+                  <div className="flex-grow">
+                    <h3 className="text-white font-bold text-lg md:text-xl mb-1 flex items-center justify-between">
+                      {card.title}
+                      <ChevronRight className="w-5 h-5 text-white/50 group-hover:translate-x-1 transition-transform" />
+                    </h3>
+                    <p className="text-white/80 text-xs md:text-sm line-clamp-2 leading-snug">
+                      {card.description}
+                    </p>
                   </div>
                 </motion.a>
               ))}
