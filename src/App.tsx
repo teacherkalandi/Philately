@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   FileText, 
@@ -66,6 +66,9 @@ const cards = [
     description: "Access comprehensive annual reports and statistical data on philatelic activities.",
     icon: FileText,
     color: "text-blue-600",
+    bg: "bg-blue-50",
+    hover: "hover:bg-blue-600",
+    border: "border-blue-100",
     link: "#"
   },
   {
@@ -73,13 +76,19 @@ const cards = [
     description: "National level letter writing competition to promote the art of letter writing.",
     icon: Mail,
     color: "text-orange-600",
+    bg: "bg-orange-50",
+    hover: "hover:bg-orange-600",
+    border: "border-orange-100",
     link: "#"
   },
   {
     title: "Deen Dayal SPARSH Yojana",
     description: "Scholarship for Promotion of Aptitude & Research in Stamps as a Hobby.",
     icon: Award,
-    color: "text-post-red",
+    color: "text-red-600",
+    bg: "bg-red-50",
+    hover: "hover:bg-red-600",
+    border: "border-red-100",
     link: "#"
   },
   {
@@ -87,6 +96,9 @@ const cards = [
     description: "International competition organized by UPU for young people worldwide.",
     icon: PenTool,
     color: "text-purple-600",
+    bg: "bg-purple-50",
+    hover: "hover:bg-purple-600",
+    border: "border-purple-100",
     link: "#"
   },
   {
@@ -94,6 +106,9 @@ const cards = [
     description: "Explore the collection of commemorative and definitive postage stamps of India.",
     icon: Stamp,
     color: "text-rose-600",
+    bg: "bg-rose-50",
+    hover: "hover:bg-rose-600",
+    border: "border-rose-100",
     link: "https://postagestamps.gov.in/"
   },
   {
@@ -101,6 +116,9 @@ const cards = [
     description: "Download essential philatelic forms, applications, and official documents.",
     icon: FileCheck,
     color: "text-cyan-600",
+    bg: "bg-cyan-50",
+    hover: "hover:bg-cyan-600",
+    border: "border-cyan-100",
     link: "#"
   },
   {
@@ -108,13 +126,19 @@ const cards = [
     description: "Access Post Office orders, rules, and guidelines related to philately.",
     icon: Scroll,
     color: "text-amber-700",
+    bg: "bg-amber-50",
+    hover: "hover:bg-amber-700",
+    border: "border-amber-100",
     link: "#"
   },
   {
     title: "Photo Gallery",
     description: "View our collection of philatelic photos, stamps, and first day covers.",
     icon: ImageIcon,
-    color: "text-amber-500",
+    color: "text-pink-600",
+    bg: "bg-pink-50",
+    hover: "hover:bg-pink-600",
+    border: "border-pink-100",
     link: "#"
   },
   {
@@ -122,6 +146,9 @@ const cards = [
     description: "Find information about local philately clubs and community gatherings.",
     icon: Users,
     color: "text-emerald-600",
+    bg: "bg-emerald-50",
+    hover: "hover:bg-emerald-600",
+    border: "border-emerald-100",
     link: "https://docs.google.com/spreadsheets/d/1JeBXI8qf6d79ODMjv7240BzvaTCwwEGFJw7wMGP8dIo/edit?usp=drivesdk"
   },
   {
@@ -129,6 +156,9 @@ const cards = [
     description: "Manage your PDA for hassle-free collection of new stamps and special covers.",
     icon: CreditCard,
     color: "text-indigo-600",
+    bg: "bg-indigo-50",
+    hover: "hover:bg-indigo-600",
+    border: "border-indigo-100",
     link: "https://docs.google.com/spreadsheets/d/1oBhZsmrEQudtnLwi6dacm1N_gdhA2AS6dbUEZ2C1190/edit?usp=drivesdk"
   }
 ];
@@ -138,7 +168,10 @@ const sparshCards = [
     title: "SPARSH 2025-26",
     description: "Scholarship details and application process for the academic year 2025-26.",
     icon: Calendar,
-    color: "text-post-red",
+    color: "text-red-600",
+    bg: "bg-red-50",
+    hover: "hover:bg-red-600",
+    border: "border-red-100",
     link: "https://sparsh-2025.vercel.app/"
   },
   {
@@ -146,12 +179,26 @@ const sparshCards = [
     description: "Upcoming scholarship schedule and guidelines for the academic year 2026-27.",
     icon: Calendar,
     color: "text-amber-600",
+    bg: "bg-amber-50",
+    hover: "hover:bg-amber-600",
+    border: "border-amber-100",
     link: "#"
   }
 ];
 
+const dhaiAkharLinks = [
+  { title: "Notification by CO", url: "https://drive.google.com/file/d/1r8o0SPuoFXK3JBS-jzgDACMl2EBBF57M/view" },
+  { title: "Notification by DO", url: "https://drive.google.com/file/d/1KxwEw4zDeuFi6tu4XT6hHdGnO-6sFuhw/view" },
+  { title: "Notification by Directorate", url: "https://drive.google.com/file/d/18JbeOJUe4bSJpRfNWXVdKeRba1E8kguL/view" },
+  { title: "SOP", url: "https://docs.google.com/document/d/1GPK_fwkG2wsOV4g4ShsZQzmibO2ZFfV6/edit" },
+  { title: "Team Guide for School Activity", url: "https://docs.google.com/document/d/1-kv5FaKI_djZnJdYsaR5M-L84syQvYar/edit" },
+  { title: "Participation Guide for Schools", url: "https://docs.google.com/document/d/1LQiRtAugk4zsnHQXLd5wD9awE3Lipu7O/edit" },
+  { title: "Social Media Guidelines", url: "https://docs.google.com/document/d/1qVrkBMolJ3NBYdjgzjGj7VXrQLtEbEV9v6Gs5WsEoVY/edit?tab=t.0" },
+  { title: "Directorate Link", url: "https://drive.google.com/drive/folders/1oAsk4ywFBFGyzL5wlqjxkARp1q9ptqWH" },
+];
+
 export default function App() {
-  const [activeView, setActiveView] = useState<"main" | "sparsh" | "documents" | "gallery">("main");
+  const [activeView, setActiveView] = useState<"main" | "sparsh" | "documents" | "gallery" | "dhai_akhar">("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<null | number>(null);
   const [documents, setDocuments] = useState([
@@ -187,22 +234,22 @@ export default function App() {
       <div className="bg-post-red h-1 w-full" />
       
       {/* Header */}
-      <header className="border-b border-post-yellow/20 py-3 md:py-4 px-4 md:px-6 bg-post-red sticky top-0 z-50 shadow-lg">
+      <header className="border-b border-slate-200 py-4 px-4 md:px-6 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 md:gap-4"
+            className="flex items-center gap-4"
           >
             {/* National Emblem */}
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" 
               alt="National Emblem" 
-              className="h-10 md:h-12 w-auto brightness-0 invert"
+              className="h-10 md:h-12 w-auto"
               referrerPolicy="no-referrer"
             />
             
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-inner overflow-hidden border-2 border-post-yellow">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-white flex items-center justify-center rounded-full shadow-md overflow-hidden border-2 border-post-red">
               <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6rXlDr3gjOzsO9mrWzH3BIHgUS8ibUopZg&s" 
                 alt="Philately Logo" 
@@ -211,8 +258,8 @@ export default function App() {
               />
             </div>
             <div>
-              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-yellow">Philately</h1>
-              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-white/80 font-bold">Department of Posts</p>
+              <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-post-red">Philately</h1>
+              <p className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-ink/60 font-bold">Department of Posts</p>
             </div>
           </motion.div>
           
@@ -220,16 +267,16 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-4 md:gap-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white"
+            className="flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-ink"
           >
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Home</a>
-            <a href="#" className="hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1">Exhibitions</a>
+            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Home</a>
+            <a href="#" className="hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1">Exhibitions</a>
             
             {/* Other Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1 hover:text-post-yellow transition-colors border-b-2 border-transparent hover:border-post-yellow pb-1 uppercase"
+                className="flex items-center gap-1 hover:text-post-red transition-colors border-b-2 border-transparent hover:border-post-red pb-1 uppercase"
               >
                 Other
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -241,7 +288,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-post-yellow/20 overflow-hidden py-2 z-[60]"
+                    className="absolute top-full right-0 mt-4 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden py-2 z-[60]"
                   >
                     {[
                       { name: "Documents", action: () => setActiveView("documents") },
@@ -257,7 +304,7 @@ export default function App() {
                             item.action();
                             setIsDropdownOpen(false);
                           }}
-                          className="w-full text-left block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                          className="w-full text-left block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
                         >
                           {item.name}
                         </button>
@@ -265,7 +312,7 @@ export default function App() {
                         <a
                           key={item.name}
                           href={item.link}
-                          className="block px-4 py-3 text-[9px] font-bold text-post-red hover:bg-post-yellow/10 hover:text-red-700 transition-colors border-b border-slate-50 last:border-0"
+                          className="block px-5 py-4 text-[10px] font-bold text-ink hover:bg-post-red hover:text-white transition-all border-b border-slate-50 last:border-0"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           {item.name}
@@ -278,11 +325,11 @@ export default function App() {
             </div>
             
             {/* India Post Logo */}
-            <div className="bg-white p-1 md:p-1.5 rounded-sm ml-1 md:ml-2">
+            <div className="bg-slate-50 p-2 rounded-lg ml-2 border border-slate-200">
               <img 
                 src="https://upload.wikimedia.org/wikipedia/en/3/32/India_Post.svg" 
                 alt="India Post" 
-                className="h-4 md:h-6 w-auto"
+                className="h-5 md:h-7 w-auto"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -351,18 +398,23 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
-              className="flex-1 relative"
+              className="flex-1 relative min-h-[400px] flex items-center justify-center"
             >
-              <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 rotate-3 hover:rotate-0 transition-transform duration-500">
-                <img 
-                  src="https://postagestamps.gov.in/Uploads/2024/Stamp%20Sarangdhar.jpg" 
-                  alt="Featured Stamp" 
-                  className="w-full h-auto rounded-lg"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 rotate-3 hover:rotate-0 transition-transform duration-500 max-w-full">
+                <div className="overflow-hidden rounded-lg bg-slate-50 flex items-center justify-center aspect-[4/5] w-[280px] md:w-[350px]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1579346617013-176f1c4e754a?q=80&w=1000&auto=format&fit=crop" 
+                    alt="Featured Philately Stamp" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1594913366159-1832ffefba31?q=80&w=1000&auto=format&fit=crop';
+                    }}
+                  />
+                </div>
                 <div className="absolute -bottom-6 -left-6 bg-post-yellow p-4 rounded-xl shadow-xl border-4 border-white rotate-[-6deg]">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-post-red">New Issue</p>
-                  <p className="text-xs font-bold text-ink">Sarangdhar Das</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-post-red">Featured Item</p>
+                  <p className="text-xs font-bold text-ink">Heritage Collection</p>
                 </div>
               </div>
               {/* Decorative elements */}
@@ -472,6 +524,48 @@ export default function App() {
               </div>
             )}
           </div>
+        ) : activeView === "dhai_akhar" ? (
+          /* Dhai Akhar Links View */
+          <div>
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <button 
+                  onClick={() => setActiveView("main")}
+                  className="p-2 hover:bg-slate-100 rounded-full transition-colors text-post-red"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-ink text-center">Dhai Akhar Resources</h3>
+              </div>
+              <p className="text-ink/60 max-w-2xl mx-auto">
+                Essential documents, notifications, and guidelines for the Dhai Akhar Letter Writing Competition.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {dhaiAkharLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-orange-500 hover:shadow-xl transition-all duration-300 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <span className="font-bold text-ink text-sm group-hover:text-orange-600 transition-colors">{link.title}</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-300 group-hover:text-orange-500" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
         ) : activeView === "gallery" ? (
           /* Photo Gallery View */
           <div>
@@ -566,28 +660,32 @@ export default function App() {
                         e.preventDefault();
                         setActiveView("gallery");
                         window.scrollTo({ top: 400, behavior: 'smooth' });
+                      } else if (card.title === "Dhai Akhar") {
+                        e.preventDefault();
+                        setActiveView("dhai_akhar");
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
                       }
                     }}
-                    className="group relative bg-white p-8 md:p-10 rounded-xl border border-slate-200 shadow-sm hover:border-post-red hover:shadow-xl transition-all duration-500 flex flex-col h-full overflow-hidden"
+                    className={`group relative p-8 md:p-10 rounded-2xl border ${card.border || 'border-slate-200'} ${card.bg || 'bg-white'} shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full overflow-hidden`}
                   >
-                  <div className={`${card.color} mb-8 p-4 bg-slate-50 rounded-lg w-fit group-hover:bg-post-red group-hover:text-white transition-all duration-500`}>
+                  <div className={`${card.color} mb-8 p-4 bg-white rounded-xl shadow-sm w-fit transition-all duration-500 group-hover:scale-110 group-hover:shadow-md`}>
                     <card.icon className="w-8 h-8" />
                   </div>
                   
-                  <h3 className="font-serif text-2xl font-bold mb-4 text-ink group-hover:text-post-red transition-colors duration-300">
+                  <h3 className={`font-serif text-2xl font-bold mb-4 transition-colors duration-300 ${card.color}`}>
                     {card.title}
                   </h3>
                   
-                  <p className="text-ink/60 leading-relaxed mb-10 flex-grow text-sm">
+                  <p className="text-ink/70 leading-relaxed mb-10 flex-grow text-sm font-medium">
                     {card.description}
                   </p>
                   
-                  <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-post-red">
+                  <div className={`flex items-center justify-between pt-6 border-t ${card.border || 'border-slate-200'}`}>
+                    <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${card.color}`}>
                       {card.title === "Deen Dayal SPARSH Yojana" || card.title === "Photo Gallery" ? "View Details" : "Learn More"}
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-post-red/5 flex items-center justify-center group-hover:bg-post-red group-hover:text-white transition-all">
-                      <ChevronRight className="w-4 h-4" />
+                    <div className={`w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center transition-all duration-300 group-hover:bg-post-red group-hover:text-white`}>
+                      <ChevronRight className="w-5 h-5" />
                     </div>
                   </div>
                 </motion.a>
