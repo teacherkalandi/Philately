@@ -171,14 +171,14 @@ const sparshCards = [
 ];
 
 const dhaiAkharLinks = [
-  { title: "Notification by CO", url: "https://drive.google.com/file/d/1r8o0SPuoFXK3JBS-jzgDACMl2EBBF57M/view" },
-  { title: "Notification by DO", url: "https://drive.google.com/file/d/1KxwEw4zDeuFi6tu4XT6hHdGnO-6sFuhw/view" },
-  { title: "Notification by Directorate", url: "https://drive.google.com/file/d/18JbeOJUe4bSJpRfNWXVdKeRba1E8kguL/view" },
-  { title: "SOP", url: "https://docs.google.com/document/d/1GPK_fwkG2wsOV4g4ShsZQzmibO2ZFfV6/edit" },
-  { title: "Team Guide for School Activity", url: "https://docs.google.com/document/d/1-kv5FaKI_djZnJdYsaR5M-L84syQvYar/edit" },
-  { title: "Participation Guide for Schools", url: "https://docs.google.com/document/d/1LQiRtAugk4zsnHQXLd5wD9awE3Lipu7O/edit" },
-  { title: "Social Media Guidelines", url: "https://docs.google.com/document/d/1qVrkBMolJ3NBYdjgzjGj7VXrQLtEbEV9v6Gs5WsEoVY/edit?tab=t.0" },
-  { title: "Directorate Link", url: "https://drive.google.com/drive/folders/1oAsk4ywFBFGyzL5wlqjxkARp1q9ptqWH" },
+  { title: "Notification by CO", url: "https://drive.google.com/file/d/1r8o0SPuoFXK3JBS-jzgDACMl2EBBF57M/view", vibrantBg: "bg-red-500", iconClass: "text-red-500" },
+  { title: "Notification by DO", url: "https://drive.google.com/file/d/1KxwEw4zDeuFi6tu4XT6hHdGnO-6sFuhw/view", vibrantBg: "bg-blue-600", iconClass: "text-blue-600" },
+  { title: "Notification by Directorate", url: "https://drive.google.com/file/d/18JbeOJUe4bSJpRfNWXVdKeRba1E8kguL/view", vibrantBg: "bg-emerald-500", iconClass: "text-emerald-500" },
+  { title: "SOP", url: "https://docs.google.com/document/d/1GPK_fwkG2wsOV4g4ShsZQzmibO2ZFfV6/edit", vibrantBg: "bg-purple-500", iconClass: "text-purple-500" },
+  { title: "Team Guide for School Activity", url: "https://docs.google.com/document/d/1-kv5FaKI_djZnJdYsaR5M-L84syQvYar/edit", vibrantBg: "bg-amber-500", iconClass: "text-amber-500" },
+  { title: "Participation Guide for Schools", url: "https://docs.google.com/document/d/1LQiRtAugk4zsnHQXLd5wD9awE3Lipu7O/edit", vibrantBg: "bg-indigo-600", iconClass: "text-indigo-600" },
+  { title: "Social Media Guidelines", url: "https://docs.google.com/document/d/1qVrkBMolJ3NBYdjgzjGj7VXrQLtEbEV9v6Gs5WsEoVY/edit?tab=t.0", vibrantBg: "bg-rose-500", iconClass: "text-rose-500" },
+  { title: "Directorate Link", url: "https://drive.google.com/drive/folders/1oAsk4ywFBFGyzL5wlqjxkARp1q9ptqWH", vibrantBg: "bg-cyan-600", iconClass: "text-cyan-600" },
 ];
 
 const philatelyVideos = [
@@ -530,11 +530,11 @@ export default function App() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group p-5 rounded-xl bg-orange-500 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between border-none"
+                  className={`group p-5 rounded-xl ${link.vibrantBg} shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between border-none`}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-white text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
-                      <FileText className="w-6 h-6" />
+                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <FileText className={`w-6 h-6 ${link.iconClass}`} />
                     </div>
                     <span className="font-bold text-white text-sm md:text-base">{link.title}</span>
                   </div>
